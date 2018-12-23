@@ -1,5 +1,30 @@
 # Reinforcement Learning
 
+## Agent
+
+TD(random policy): `agent_td.py` 
+Sarsa: `agent_sarsa.py`
+
+Q-Learning: `agent_q.py`
+
+n-step Sarsa: `agent_n_sarsa.py` incomplete
+
+Expected Sarsa: `agent_exp_sarsa.py` incomplete
+
+Dyna-Q: `agent_dyna_q.py`
+
+Dyna-Q+: `agent_dyna_q_plus.py`
+
+## Environment
+Simple Grid: `env.py`
+
+Cliff: `env_cliff.py`
+
+Maze: `env_maze.py`
+
+## Experiment
+By typing out `python3 experiment.py` in command line tool.
+
 # Acknowledgement
 
 ### RL Glue framework

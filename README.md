@@ -2,7 +2,8 @@
 
 ## Agent
 
-TD(random policy): `agent_td.py` 
+TD(random policy): `agent_td.py`
+
 Sarsa: `agent_sarsa.py`
 
 Q-Learning: `agent_q.py`

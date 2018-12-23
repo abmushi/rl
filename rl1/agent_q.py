@@ -2,7 +2,6 @@ from rl_glue import BaseAgent
 import numpy as np
 import sys
 import constant as constant
-from time import sleep
 
 class QAgent(BaseAgent):
     """

@@ -24,9 +24,9 @@ class GridEnvironment(BaseEnvironment):
         """
         self._x = constant._x
         self._y = constant._y
-        # self._goal = [np.random.randint(self._x),np.random.randint(self._y)]
+        
         self._goal = [3,5]
-        self.s = [0,0]
+        self.s = [0,0,0]
         self.map = np.zeros((self._x,self._y))
         self.map[self._goal[0],self._goal[1]] = constant.TYPE_GOAL
 
@@ -35,7 +35,7 @@ class GridEnvironment(BaseEnvironment):
         Arguments: Nothing
         Returns: state - numpy array
         """
-        self.s = [np.random.randint(self._x),np.random.randint(self._y)]
+        self.s = [np.random.randint(self._x),np.random.randint(self._y),0]
         return self.s
 
     def env_step(self, action):

@@ -7,15 +7,9 @@ from rl_glue import RLGlue
 
 from env import GridEnvironment
 from env_cliff import CliffEnvironment
-from env_maze import MazeEnvironment
+# from env_maze import MazeEnvironment
 
-from agent_td import TDAgent
-from agent_q import QAgent
-from agent_sarsa import SARSAgent
-from agent_exp_sarsa import ExpectedSARSAgent
-from agent_n_sarsa import NstepSARSAgent
-from agent_dyna_q import DynaQAgent
-from agent_dyna_q_plus import DynaQPlusAgent
+from agent_ET import ETAgent
 
 import constant as constant
 import numpy as np
@@ -38,13 +32,7 @@ environment = CliffEnvironment()
 # environment = MazeEnvironment()
 
 # --- select agent
-# agent = TDAgent()
-# agent = SARSAgent()
-agent = QAgent()
-# agent = ExpectedSARSAgent()
-# agent = NstepSARSAgent()
-# agent = DynaQAgent()
-# agent = DynaQPlusAgent()
+agent = ETAgent()
 
 rlglue = RLGlue(environment, agent)
 
@@ -60,7 +48,7 @@ def draw_step(V,state,env_map):
             elif env_map[i,j] == constant.TYPE_WALL:
                 screen.fill((150,150,150),rect)
             else:
-                temp = V[i,j]*200
+                temp = V[i,j,0]*200
                 if temp > 255:
                     temp = 255
                 elif temp < 0:

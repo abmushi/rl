@@ -2,6 +2,7 @@
 
 ## Agent
 
+- rl1/
 TD(random policy): `agent_td.py`
 
 Sarsa: `agent_sarsa.py`
@@ -15,6 +16,9 @@ Expected Sarsa: `agent_exp_sarsa.py` incomplete
 Dyna-Q: `agent_dyna_q.py`
 
 Dyna-Q+: `agent_dyna_q_plus.py`
+
+- rl2/
+Sarsa(lambda) implemented with Eligibility Trace: `agent_ET.py`
 
 ## Environment
 Simple Grid: `env.py`

@@ -2,7 +2,8 @@
 
 ## Agent
 
-- rl1/
+### rl1/
+
 TD(random policy): `agent_td.py`
 
 Sarsa: `agent_sarsa.py`
@@ -17,7 +18,8 @@ Dyna-Q: `agent_dyna_q.py`
 
 Dyna-Q+: `agent_dyna_q_plus.py`
 
-- rl2/
+### rl2/
+
 Sarsa(lambda) implemented with Eligibility Trace: `agent_ET.py`
 
 ## Environment

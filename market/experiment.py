@@ -5,15 +5,13 @@
 """
 from rl_glue import RLGlue
 
-# from env import GridEnvironment
-from env_cliff import CliffEnvironment
-# from env_maze import MazeEnvironment
+from env_market_static import StaticMarketEnvironment
+from env_market_variable import VariableMarketEnvironment
 
-from agent_ET import ETAgent
+from agent_dyna_q_plus import DynaQPlusAgent
+from agent_dyna_q import DynaQAgent
 
 import constant as constant
-import numpy as np
-from time import sleep
 
 import pygame
 
@@ -27,16 +25,18 @@ max_episode = 200
 time_step = 0
 
 # --- select environment
-# environment = GridEnvironment()
-environment = CliffEnvironment()
-# environment = MazeEnvironment()
+environment = StaticMarketEnvironment()
+# environment = VariableMarketEnvironment()
 
 # --- select agent
-agent = ETAgent()
+# agent = DynaQPlusAgent()
+agent = DynaQAgent()
 
 rlglue = RLGlue(environment, agent)
 
 def draw_step(V,state,env_map):
+
+    screen.fill((0,0,0),pygame.Rect(0,0,700,520))
     # draw Q
     for i in range(0,constant._x):
         for j in range(0,constant._y):
@@ -47,20 +47,31 @@ def draw_step(V,state,env_map):
                 screen.fill((50,50,53),rect)
             elif env_map[i,j] == constant.TYPE_WALL:
                 screen.fill((150,150,150),rect)
+            elif env_map[i,j] == constant.TYPE_SOURCE:
+                screen.fill((10,200,255),rect)
+            elif env_map[i,j] == constant.TYPE_MARKET:
+                screen.fill((255,200,10),rect)
             else:
-                temp = V[i,j,0]*200
+                temp = V[i,j,state[2]]*25
                 if temp > 255:
                     temp = 255
                 elif temp < 0:
                     temp = 0
                 temp2 = int(255-temp)
-                screen.fill((255,temp2,temp2),rect)
+                if state[2] > 0:
+                    screen.fill((255,temp2,temp2),rect)
+                else:
+                    screen.fill((temp2,temp2,255),rect)
 
     # draw line
     for i in range(0,constant._x):
         pygame.draw.line(screen,(255,255,255),(i*constant._unit,0),(i*constant._unit,constant._y*constant._unit))
     for j in range(0,constant._y):
         pygame.draw.line(screen,(255,255,255),(0,j*constant._unit),(constant._x*constant._unit,j*constant._unit))
+
+    for t in range(state[2]):
+        rect = pygame.Rect(10 + t*constant._unit + 2,(constant._y + 1)*constant._unit + 2,constant._unit - 4,constant._unit - 4)
+        screen.fill((200,200,200),rect)
 
     # draw agent
     agent_rect = pygame.Rect(state[0]*constant._unit + 4, state[1]*constant._unit + 4, constant._unit-8, constant._unit-8)
